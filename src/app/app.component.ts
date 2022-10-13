@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import Quagga from '@ericblade/quagga2';
 import { getMainBarcodeScanningCamera } from "./cameraAccess";
+import {IOdooConfig, OdooXMLPRC} from "./odoo-xml-rpc";
 
 @Component({
   selector: 'app-root',
@@ -100,6 +101,38 @@ export class AppComponent implements AfterViewInit {
 
   onBarcodeScanned(code: string) {
     alert("Code: "+code)
+
+
+    const config: IOdooConfig = {
+      url: 'http://159.223.180.97:8069',
+      db: 'refaccionaria_valencia',
+      username: 'freddy.vd07@gmail.com',
+      password: 'Ajolotito13.'
+    }
+
+    let odoo = new OdooXMLPRC(config);
+    odoo
+      .connect()
+      .then(result => {
+        console.log('Connect successful', result);
+
+        odoo.list('res.partner')
+          .then(records => {
+            console.log(records);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+  }
+
+  testButton() {
+    const code = "031508421776"
+    this.onBarcodeScanned(code)
   }
 
 

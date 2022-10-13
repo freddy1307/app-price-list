@@ -1,3 +1,34 @@
-<div id="interactive" class="viewport">
+<div class="error-message" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div id="scanner-container">
   <!-- QuaggaJS will populate this element -->
+</div>
+
+
+<div>
+  <button
+    class="btn btn-primary"
+    (click)="testButton()"
+  ></button>
+</div>
+
+<div class="instructions">
+  This is a companion app for the blog post located <a target="_blank" href="https://blog.classycode.com/">here</a>.
+  The source code is available on <a target="_blank" href="https://github.com/classycodeoss/mobile-scanning-demo">Github</a>.
+</div>
+
+<div class="controls">
+  <form>
+    <!--<input id="acceptAnyCode" type="checkbox" [(ngModel)]="acceptAnyCode" name="acceptAnyCode" required/>
+    <label for="acceptAnyCode">Accept any code</label>
+    &nbsp;
+    <button (click)="clearCart()">Clear cart</button>-->
+  </form>
+
+</div>
+
+<div class="shopping-cart">
+
 </div>
